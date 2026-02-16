@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Qubit Cloud - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="scroll.css">
+   
+</head>
+<body>
+    
+   
+  
+    <div class="neon-bg" aria-hidden="true"></div>
+    <header>
+        <nav class="navbar">
+            <!-- Logo as a single anchor so image+text keep the same styles -->
+            <a href="index.html" class="logo">
+                <img src="images/Meta.png" alt="Qubit Cloud Logo" height="40">
+                <!--<span>Qubit Cloud</span> --> 
+            </a>
+            <ul class="nav-links">
+               
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+               
+                <li><a href="academy.html">Academy</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="employee_login.php">Employee Portal</a></li>
+            </ul>
+            <a href="contact.html" class="cta">Schedule a Call</a>
+             <!-- Hamburger Icon for Mobile -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open Menu" aria-controls="mobileSidebar" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+          
+        </nav>
+
+         <!-- Sidebar Overlay and Sidebar Menu -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside class="mobile-sidebar" id="mobileSidebar" aria-hidden="true">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                  
+                    <li><a href="academy.html">Academy</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="career.html">Career</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="employee_login.php">Employee Portal</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </header>
+    <main>
+
+
+ 
+
+
+      <section class="hero">
+            <!-- Video background (full-bleed). Provide videos/hero-bg.webm and videos/hero-bg.mp4 and an images/hero-poster.jpg poster -->
+            <video id="heroVideo"
+                   class="hero-bg"
+                   autoplay
+                   muted
+                   loop
+                   playsinline
+                   preload="metadata"
+                   poster="images/hero-poster.jpg"
+                   aria-hidden="true" tabindex="-1">
+                <!-- Prefer WebM first for smaller size/quality balance -->
+                <source src="videos/hero-bg.webm" type="video/webm">
+                <source src="videos/hero-bg.mp4" type="video/mp4">
+                <!-- Fallback: poster image or background as defined in CSS -->
+            </video>
+
+            <div class="hero-content">
+                <div class="hero-inner">
+                    <span class="badge">IT Development Company</span>
+                    <h1>
+                        Where Vision Transform Into Impactful<br>
+                        Digital Innovations
+                    </h1>
+                    <p>
+                        We Breathe Life Into Ideas,Weaving Technology And Creativity Into Timeless Digital Experiences.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="https://drive.google.com/file/d/1UgsaB6QSwVn0AoUIGfBJCKyDQfmFBxPP/view?usp=sharing" class="button pdf" download>See Company Profile</a>
+                        <a href="contact.html" class="button primary">Hire The Best Team</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <style>
+
+ /* ---- Hero video background (append near hero styles) ---- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 0 36px;
+}
+
+/* Video sits behind content */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  
+  opacity: .95;
+  will-change: transform, opacity;
+}
+
+/* Soft overlay so white text remains readable on varying frames */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,16,40,0.60), rgba(6,10,24,0.74));
+}
+
+/* Ensure hero content floats above video/overlay */
+.hero .hero-inner,
+.hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Stacks intro and marquee adjustments to sit visually below hero content */
+.stacks-intro {
+  margin-top: 22px;
+  z-index: 2;
+  position: relative;
+}
+
+/* Slight visual tweak for the marquee when placed on video background */
+.logo-marquee {
+  margin: 18px auto 0;
+  max-width: 1100px;
+  overflow: hidden;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  border: 1px solid rgba(78,161,255,0.03);
+  box-shadow: 0 6px 22px rgba(49,47,255,0.04);
+  z-index: 2;
+}
+
+/* Respect reduced-motion: hide video and use poster/background */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg { display: none !important; }
+  .hero { background-image: url('images/hero-poster.jpg'); background-size: cover; background-position: center center; }
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .hero { padding: 56px 12px; min-height: 420px; }
+  .logo-marquee { padding: 8px; }
+}
+        
+        </style>
+
+
+        <script>
+    // Small script to ensure autoplay policies and respect reduced-motion preference.
+    document.addEventListener('DOMContentLoaded', function () {
+      const vid = document.getElementById('heroVideo');
+      if (!vid) return;
+
+      // Make sure video is muted (autoplay policy)
+      try { vid.muted = true; } catch (e) { /* no-op */ }
+
+      // If the user prefers reduced motion, pause video and remove autoplay attribute
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        try {
+          vid.pause();
+          vid.removeAttribute('autoplay');
+        } catch (e) {}
+      }
+
+      // Optional: if browser blocks autoplay, try to play on first user gesture
+      // (keeps experience working on strict mobile browsers)
+      document.addEventListener('click', function onFirstClick() {
+        if (vid.paused) {
+          vid.play().catch(() => {});
+        }
+        document.removeEventListener('click', onFirstClick);
+      }, { once: true });
+    });
+    </script>
+
+
+
+
+
+
+<!-- Glossy Showcase — paste this after your sections in index.html -->
+<section class="glossy-showcase" aria-labelledby="glossy-heading">
+  <div class="glossy-wrap container max-w-1200">
+    <div class="glass-card" role="region" aria-labelledby="glossy-heading">
+               <div class="glass-inner">
+
+      <!-- Services Section (added as requested; matches screenshot layout) -->
+<section class="services-section" aria-labelledby="services-heading">
+    <div class="services-container">
+        <!-- Left / Center / Right columns -->
+        <div class="services-left">
+            <h2 id="services-heading" style="font-size:2.6rem;margin:0 0 28px 0;color:white;"><br>Web Development<br>Services</h2>
+            <p style="max-width:420px;color:white;margin-top:10px;">
+               We build fast, secure, and scalable web applications tailored to your Business Needs
+            </p>
+        </div>
+
+        <div class="services-left">
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    
+                    
+                    <img src="images/logos/react.png" alt="React logo" height="40">
+                
+                
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    React + Python</h3>
+                <p style="margin:0;color:white;">React empowers us to build fast, dynamic, and user-friendly web applications with a modern touch.
+                    Python enables powerful, scalable, and flexible solutions, making complex ideas simple and efficient.</p>
+            </div>
+
+
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    
+                    
+                   
+                   <img src="images/logos/wp.png" alt="WordPress logo" height="40">
+            
+            
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    WordPress/Shopify</h3>
+                <p style="margin:0;color:white;">WordPress helps us craft flexible, professional, and easy-to-manage websites.</p>
+            </div>
+            
+            
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                   <img src="images/logos/lara.png" alt="Laravel logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Laravel</h3>
+                <p style="margin:0;color:white;">We deliver robust, custom, and Secure Web applications that align perfectly with your business objectives.</p>
+            </div>
+        </div>
+
+        <div class="services-left">
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <img src="images/logos/host.png" alt="Hostinger logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Domain and Hosting</h3>
+                <p style="margin:0;color:white;">We simplify the process of buying domains and hosting, ensuring seamless integration with web solution.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                  
+                  <img src="images/logos/sql.png" alt="SQL logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Database Management</h3>
+                <p style="margin:0;color:white;">Our database management services ensure smooth and efficient interaction between datasets and users, establishing a solid foundation for your business operations.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                  <img src="images/logos/pos.png" alt="Pos logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Points of Sale (POS)</h3>
+                <p style="margin:0;color:white;">Our custom POS solutions streamline operations, ensure secure transactions, and offer real-time insights for smarter business decisions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- Glossy Showcase — paste this after your sections in index.html -->
+<section class="glossy-showcase" aria-labelledby="glossy-heading">
+  <div class="glossy-wrap container max-w-1200">
+    <div class="glass-card" role="region" aria-labelledby="glossy-heading">
+         <div class="glass-inner">
+
+<!-- Software Development Section -->
+<section class="services-section" aria-labelledby="services-heading">
+    <div class="services-container">
+        <div class="services-left">
+            <h2 id="services-heading" style="font-size:2.6rem;margin:0 0 28px 0;color:white;"><br>Software Development<br>Services</h2>
+            <p style="max-width:420px;color:white;margin-top:10px;">
+                We Deliver High - Quality Custom Software Solutions to help businesses grow faster and smarter
+            </p>
+        </div>
+
+        <div class="services-center">
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    
+                    <img src="images/logos/flutter.png" alt="flutter logo" height="40">
+                    
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Custom Software Solution </h3>
+                <p style="margin:0;color:white;">Get Personalized Software designed to solve your unique business challenges.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <img src="images/logos/app.png" alt="App logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Mobile App Development</h3>
+                <p style="margin:0;color:white;">Create user-friendly mobile apps for Android & iOS that deliver seamless Performance.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <img src="images/logos/api.png" alt="APi logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    API & System Integration</h3>
+                <p style="margin:0;color:white;">We integrate APIs and Connect your Systems for smooth data flow and automation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<!-- Glossy Showcase — paste this after your sections in index.html -->
+<section class="glossy-showcase" aria-labelledby="glossy-heading">
+  <div class="glossy-wrap container max-w-1200">
+    <div class="glass-card" role="region" aria-labelledby="glossy-heading">
+               <div class="glass-inner">
+
+<!-- Digital Marketing Section -->
+<section class="services-section" aria-labelledby="digital-marketing-heading">
+    <div class="services-container">
+        <div class="services-left">
+            <h2 id="digital-marketing-heading"
+                style="font-size:2.6rem;margin:0 0 28px 0;color:white;">
+                <br>Digital Marketing<br>Services
+            </h2>
+            <p style="max-width:420px;color:white;margin-top:10px;">
+                We provide complete digital marketing solutions to grow your business online through SEO, social media, ADS run, content strategy, and data-driven campaigns.
+            </p>
+        </div>
+
+        <div class="services-left">
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <img src="images/logos/seo.png" alt="seo logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Search Engine Optimization (SEO)</h3>
+                <p style="margin:0;color:white;">We help your business rank higher on Google with smart SEO strategies that attract real customers and boost online visibility.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                  <img src="images/logos/Face.png" alt="facebook logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Social Media Marketing</h3>
+                <p style="margin:0;color:white;">Engage your audience and grow your brand across all social platforms with creative and targeted campaigns.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                   <img src="images/logos/fb.png" alt="Marketing logo" height="40">
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Content Marketing</h3>
+                <p style="margin:0;color:white;">We create valuable, engaging content that builds trust, drives traffic, and strengthens your brand identity.</p>
+            </div>
+        </div>
+
+        <div class="services-right">
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="2" width="20" height="20" rx="4"
+                            fill="#FFF8E6"/>
+                        <path d="M9 12h6M9 8h6" stroke="#B9771A"
+                            stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Google </h3>
+                <p style="margin:0;color:white;">Reach the right people at the right time through powerful Google Ads that maximize your return on investment.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="2" width="20" height="20" rx="4"
+                            fill="#F2F0FF"/>
+                        <path d="M4 8l8 6 8-6" stroke="#5A46FF"
+                            stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Email Marketing</h3>
+                <p style="margin:0;color:white;">Connect directly with your audience through personalized email campaigns that boost engagement, build trust, and drive sales.</p>
+            </div>
+
+            <div class="service-block" style="margin-bottom:26px;">
+                <div class="service-icon" aria-hidden="true" style="margin-bottom:12px;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="2" width="20" height="20" rx="4"
+                            fill="#EEF9F1"/>
+                        <path d="M8 16l2-4 2 2 2-3 2 5" stroke="#2C8C5C"
+                            stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3
+                    style="margin:0 0 8px 0;font-size:1.05rem;color:white;font-weight:700;">
+                    Analytics & Reporting</h3>
+                <p style="margin:0;color:white;">Track performance with detailed analytics and insights to make smarter marketing decisions that deliver results.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        </div>
+      </div>
+    </div>
+ 
+</section>
+
+
+<style>
+  /* Glossy Showcase styles — append to style.css (or include as <style>) */
+
+.glossy-showcase {
+  position: relative;
+  padding: 64px 20px 96px;
+  background: transparent; /* inherits page background */
+  overflow: visible;
+  z-index: 2;
+}
+
+/* keep the page container sizing consistent */
+.glossy-wrap { max-width: 1200px; margin: 0 auto; }
+
+/* Glass card */
+.glass-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 30px;
+  overflow: visible;
+  /* subtle glass surface */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 18px 60px rgba(2,8,28,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px) saturate(120%);
+}
+
+/* animated colorful running light around the card:
+   we use a pseudo-element (.glass-card::before) with a conic-gradient,
+   blurred and sized slightly larger than the card, then clip to the border by masking
+*/
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  padding: 2px;
+  pointer-events: none;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    rgba(78,161,255,0.9),
+    rgba(108,225,255,0.9),
+    rgba(255,110,135,0.9),
+    rgba(127,78,255,0.95),
+    rgba(78,161,255,0.9)
+  );
+  filter: blur(14px) saturate(140%);
+  transform: rotate(0deg);
+  animation: gloss-rotate var(--gloss-rotate-speed, 8s) linear infinite;
+  mix-blend-mode: screen;
+}
+
+/* inner subtle rim line */
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.14);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+
+
+/* content stacking */
+.glass-inner { position: relative; z-index: 2; display:block; }
+.glass-header { display:flex; justify-content:space-between; align-items:right; margin-bottom:14px; }
+.glass-nav .nav-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-left:8px; background: rgba(255,255,255,0.06); }
+
+/* body layout */
+.glass-body { display:flex; gap: 36px; align-items: center; min-height: 260px; position:relative; }
+.glass-left { flex: 1; padding: 6px 6px 6px 12px; z-index: 4; max-width: 48%; }
+.glass-right { flex: 1; position: relative; height: 320px; min-width: 320px; z-index: 2; }
+
+/* typography on card */
+.glass-left h2 {
+  color: var(--text);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  margin: 0 0 12px 0;
+  line-height: 1.02;
+  font-weight: 800;
+}
+.glass-left .muted {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 20px;
+}
+
+
+
+
+/* CTA style override inside card to remain compact */
+.glass-ctas .button { display:inline-block; margin-right:12px; padding:10px 18px; border-radius:10px; }
+.glass-ctas .button.pdf { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); }
+
+/* Floating blobs (decorative) */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(22px) saturate(150%);
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+  opacity: 0.95;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile / small-screen tweaks for glass-card: keep text inside and enlarge card */
+@media (max-width: 800px) {
+  /* Make the whole card wider on small screens, centered and boxed correctly */
+  .glass-card {
+    box-sizing: border-box;           /* ensure padding counts in width */
+    width: min(92vw, 820px);          /* use most of viewport but cap for larger phones */
+    max-width: 92vw;
+    margin: 18px auto;                /* center the card */
+    padding: 28px;                    /* outer padding to keep glow visible */
+    border-radius: 18px;
+  }
+
+  /* Slightly enlarge the glowing rim so it looks balanced on mobile */
+  .glass-card::before { inset: -8px; filter: blur(16px); }
+
+  /* Add a dark inner panel so text sits on a stable background (optional but helps legibility) */
+  .glass-inner {
+    background: rgba(6,12,24,0.92);
+    border-radius: 12px;
+    padding: 26px;
+  }
+
+  /* Stack layout vertically so all content fits inside the card */
+  .glass-body {
+    display: block;                   /* stack instead of side-by-side */
+    gap: 18px;
+    min-height: auto;
+  }
+
+  /* Ensure left/right sections are full width and text wraps */
+  .glass-left,
+  .glass-right,
+  .services-left,
+  .services-center,
+  .services-right {
+    max-width: 100%;
+    width: 100%;
+    padding: 6px 0;
+  }
+
+  /* Remove fixed min-width that prevents shrinking */
+  .glass-right { min-width: 0; height: auto; }
+
+  /* Make heading large but constrained to avoid overflow outside the card */
+  .glass-left h2 {
+    font-size: clamp(2.0rem, 6.6vw, 3.4rem);  /* large but won't explode */
+    line-height: 1.04;
+    margin-bottom: 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Paragraphs: ensure readable size and no overflow */
+  .glass-left p,
+  .glass-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Service blocks: make icons and spacing comfortable on phones */
+  .service-block { margin-bottom: 18px; padding: 6px 0; }
+  .service-icon img { height: 44px; width: auto; margin-bottom: 12px; display:inline-block; }
+
+  /* Prevent animations from shifting layout badly on very small devices */
+  @media (max-width: 420px) {
+    .glass-card { padding: 18px; width: 96vw; }
+    .glass-inner { padding: 18px; }
+    .glass-left h2 { font-size: clamp(1.8rem, 8.5vw, 2.8rem); }
+  }
+}
+
+
+
+
+
+
+
+
+
+</style>
+
+
+<script>
+
+// Glossy showcase helper — append to script.js (it will respect reduced-motion)
+// This tiny helper adjusts css variable speed if reduced motion is off.
+// No heavy JS required; CSS handles most animations.
+
+(function () {
+  const root = document.documentElement;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // If user prefers reduced motion, lower the rotation speed and pause blob keyframes by adding a class
+  if (prefersReduced) {
+    root.style.setProperty('--gloss-rotate-speed', '0s');
+    document.querySelectorAll('.blob').forEach(b => b.style.animationPlayState = 'paused');
+  } else {
+    root.style.setProperty('--gloss-rotate-speed', '8s'); // default rotation speed
+  }
+
+  // Optional: subtle speed tweak based on viewport width (fewer cycles on small devices)
+  function tune() {
+    const w = window.innerWidth;
+    if (w < 600) root.style.setProperty('--gloss-rotate-speed', prefersReduced ? '0s' : '12s');
+    else if (w < 1000) root.style.setProperty('--gloss-rotate-speed', prefersReduced ? '0s' : '10s');
+    else root.style.setProperty('--gloss-rotate-speed', prefersReduced ? '0s' : '8s');
+  }
+  window.addEventListener('resize', tune);
+  document.addEventListener('DOMContentLoaded', tune);
+})();
+
+</script>
+
+
+
+
+
+
+
+
+<section class="hero">
+           
+            <div class="hero-images">
+                <!-- Decorative / optional images -->
+            </div>
+
+            <!-- Intro text above the logos (existing) -->
+            <div class="stacks-intro" role="region" aria-label="We serve all tech stacks">
+                <h2>We Master All Modern Programming Language</h2>
+                
+
+            <!-- Logos marquee: animated row of circular language logos -->
+            <div class="logo-marquee" aria-hidden="false">
+                <div class="marquee-track" role="list" aria-label="Technologies we use">
+                    <!-- single set (will be duplicated via HTML for seamless loop) -->
+                    <div class="marquee-set" role="presentation">
+                        <div class="marquee-item" role="listitem"><img src="images/logos/java.png" alt="Java logo" title="Java"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/python.png" alt="Python logo" title="Python"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/html.png" alt="HTML5 logo" title="HTML5"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/php.png" alt="PHP logo" title="PHP"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/js.png" alt="JavaScript logo" title="JavaScript"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/react.png" alt="React logo" title="React"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/node.png" alt="Node.js logo" title="Node.js"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/go.png" alt="Golang logo" title="Golang"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/aws.png" alt="AWS logo" title="AWS"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/csharp.png" alt="C# logo" title="C#"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/py.png" alt="py logo" title="py"></div>
+                        <div class="marquee-item" role="listitem"><img src="images/logos/R.png" alt="R logo" title="R"></div>
+
+                    </div>
+
+                    <!-- duplicate set for continuous loop -->
+                    <div class="marquee-set" role="presentation" aria-hidden="true">
+                        <div class="marquee-item"><img src="images/logos/java.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/python.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/html.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/php.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/js.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/react.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/node.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/go.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/aws.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/csharp.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/py.png" alt=""></div>
+                        <div class="marquee-item"><img src="images/logos/R.png" alt=""></div>
+
+                    </div>
+                </div>
+            </div>
+
+</section>
+
+
+
+
+        <!-- ===== Industry Expertise Section (ADDED) ===== 
+        <section aria-labelledby="industry-heading" style="background:#0b0b1b;color:#fff;padding:64px 20px 80px;">
+            <div style="max-width:1200px;margin:0 auto;text-align:center;">
+                <h2 id="industry-heading" style="font-size:2.8rem;margin:0 0 12px;font-weight:800;">Our Industry Expertises</h2>
+                <p style="color:#c9c9d9;max-width:880px;margin:10px auto 34px;font-size:1rem;">
+                    Our deep understanding of diverse industries empowers us to design customized software solutions. Let our expertise be the catalyst for your next triumph.
+                </p>
+
+            
+                <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;padding-top:8px;">
+                    
+                    <div style="background:#FAD0EB;color:#1f1330;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#1f1330" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Finance &amp; Banking</span>
+                    </div>
+
+                    <div style="background:#DFFCE6;color:#08321a;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h18v10H3z" stroke="#08321a" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">E-commerce</span>
+                    </div>
+
+                    <div style="background:#E7E0FF;color:#1f1330;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2" stroke="#1f1330" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Telecom</span>
+                    </div>
+
+                    <div style="background:#DFF3FF;color:#102233;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16v10H4z" stroke="#102233" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Real Estate</span>
+                    </div>
+
+                    <div style="background:#FFF0D6;color:#3b2a14;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="#3b2a14" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Software</span>
+                    </div>
+
+                    <div style="background:#E7FFE9;color:#08321a;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18" stroke="#08321a" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Health &amp; Fitness</span>
+                    </div>
+
+                    <div style="background:#E9E0FF;color:#1f1330;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14" stroke="#1f1330" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Automotive</span>
+                    </div>
+
+                    <div style="background:#FFF7D9;color:#3b2a14;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#3b2a14" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Photo &amp; Video</span>
+                    </div>
+
+                    <div style="background:#FFEDD9;color:#3b2a14;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12" stroke="#3b2a14" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Business</span>
+                    </div>
+
+                    <div style="background:#DFF3FF;color:#102233;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4l4 8h-8z" stroke="#102233" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Startup</span>
+                    </div>
+
+                    <div style="background:#E7E0FF;color:#1f1330;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" stroke="#1f1330" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">AR/VR</span>
+                    </div>
+
+                    <div style="background:#DFFCE6;color:#08321a;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16" stroke="#08321a" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Legal Services</span>
+                    </div>
+
+                    <div style="background:#FFF0D6;color:#3b2a14;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 7v10" stroke="#3b2a14" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Non-profit</span>
+                    </div>
+
+                    <div style="background:#DFF3FF;color:#102233;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="6" width="6" height="12" rx="1" stroke="#102233" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Govt. &amp; Public Sector</span>
+                    </div>
+
+                    <div style="background:#E7E0FF;color:#1f1330;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="#1f1330" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Sports &amp; Fitness</span>
+                    </div>
+
+                    <div style="background:#DFFCE6;color:#08321a;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7l4 6 4-6" stroke="#08321a" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Gaming</span>
+                    </div>
+
+                    <div style="background:#FFF0D6;color:#3b2a14;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16" stroke="#3b2a14" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Fashion &amp; Apparel</span>
+                    </div>
+
+                    <div style="background:#E7FFE9;color:#08321a;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18" stroke="#08321a" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Energy &amp; Utilities</span>
+                    </div>
+
+                    <div style="background:#E7FFE9;color:#08321a;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="#08321a" stroke-width="1.2"/></svg>
+                        <span style="font-weight:700;">Agriculture</span>
+                    </div>
+
+                    <div style="background:#DFF3FF;color:#102233;border-radius:18px;padding:18px 26px;min-width:200px;display:flex;align-items:center;gap:14px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#102233" stroke-width="1.2" fill="none"/></svg>
+                        <span style="font-weight:700;">Logistics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        -->
+
+        <!-- Team Stats Section (Horizontal Visual Stack) -->
+<section class="team-stats-section" aria-labelledby="team-stats-heading">
+  <div class="max-w-1200 center" style="display:flex;justify-content:center;gap:36px;align-items:center;padding:56px 20px;flex-wrap:wrap;">
+    
+    <!-- Visual Row 1 -->
+    <div class="visual-row" style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <img src="images/team-1.jpg" alt="Team Member 1" class="faq-visual" style="width:160px;height:160px;border-radius:12px;object-fit:cover;" />
+      <div class="stat-card stat-blue" style="text-align:center;padding:16px 24px;border-radius:10px;background:#e0f0ff;">
+        <div class="stat-label" style="font-weight:600;color:#007bff;">Top Talents</div>
+        <div class="stat-number" style="font-size:1.8rem;font-weight:700;color:#071028">60+</div>
+      </div>
+    </div>
+
+    <!-- Visual Row 2 -->
+    <div class="visual-row" style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <img src="images/team-2.jpg" alt="Project Work" class="faq-visual" style="width:160px;height:160px;border-radius:12px;object-fit:cover;" />
+      <div class="stat-card stat-pink" style="text-align:center;padding:16px 24px;border-radius:10px;background:#ffe0f0;">
+        <div class="stat-label" style="font-weight:600;color:#e83e8c;">Projects</div>
+        <div class="stat-number" style="font-size:1.8rem;font-weight:700;color:#071028">120+</div>
+      </div>
+    </div>
+
+    <!-- Visual Row 3 -->
+    <div class="visual-row" style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <img src="images/team-3.jpg" alt="Office Locations" class="faq-visual" style="width:160px;height:160px;border-radius:12px;object-fit:cover;" />
+      <div class="stat-card stat-green" style="text-align:center;padding:16px 24px;border-radius:10px;background:#e0ffe5;">
+        <div class="stat-label" style="font-weight:600;color:#28a745;">Offices</div>
+        <div class="stat-number" style="font-size:1.8rem;font-weight:700;color:#071028">1</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+        <!-- FAQ + Visual Stats section (insert into index.html) -->
+<section class="faq-section" aria-labelledby="faq-heading">
+  <div class="max-w-1200 center" style="display:flex;gap:36px;align-items:flex-start;padding:56px 20px;">
+    <!--
+    <div class="faq-left" aria-hidden="true" style="flex:0 0 320px;display:flex;flex-direction:column;gap:22px;">
+      <div class="visual-row" style="display:flex;gap:12px;align-items:center;">
+        <img src="images/team-1.jpg" alt="" class="faq-visual" />
+        <div class="stat-card stat-blue">
+          <div class="stat-label">Top Talents</div>
+          <div class="stat-number">300+</div>
+        </div>
+      </div>
+
+      <div class="visual-row" style="display:flex;gap:12px;align-items:center;">
+        <img src="images/team-2.jpg" alt="" class="faq-visual" />
+        <div class="stat-card stat-pink">
+          <div class="stat-label">Projects</div>
+          <div class="stat-number">80+</div>
+        </div>
+      </div>
+
+      <div class="visual-row" style="display:flex;gap:12px;align-items:center;">
+        <img src="images/team-3.jpg" alt="" class="faq-visual" />
+        <div class="stat-card stat-green">
+          <div class="stat-label">Offices</div>
+          <div class="stat-number">3</div>
+        </div>
+      </div>
+    </div>
+-->
+    <!-- Right: FAQ accordion -->
+    <div class="faq-right" style="flex:1;">
+      <h2 id="faq-heading" style="font-size:2.2rem;margin:0 0 22px 0;">Frequently Asked Questions</h2>
+
+      <div class="faq-list" role="list" aria-label="Frequently asked questions">
+        <!-- FAQ item 1 (open by default) -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="true" aria-controls="faq1" id="faq1-btn">
+            <span class="faq-index">01</span>
+            <span class="faq-title">What services does Qubit Cloud provide?</span>
+            <span class="faq-chevron" aria-hidden="true">▲</span>
+          </button>
+          <div id="faq1" class="faq-answer" role="region" aria-labelledby="faq1-btn">
+            <p>
+              We offer a complete range of IT solutions including web development, software development, and digital marketing. 
+              Our goal is to help businesses build a strong online presence and operate more efficiently. 
+              Whether you need a professional website, a custom software application, or digital marketing strategies, we provide tailored solutions that deliver measurable results.
+              
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ item 2 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-btn">
+            <span class="faq-index">02</span>
+            <span class="faq-title">How long does it take to develop a website?</span>
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div id="faq2" class="faq-answer" role="region" aria-labelledby="faq2-btn" hidden>
+            <p>
+              The development timeline depends on the size and complexity of your project. A simple business website may take around 2–4 weeks, 
+              while more advanced or customized projects can take longer. We always ensure clear communication and regular updates, so you know exactly what to expect. 
+              Our priority is to deliver high-quality work within your desired timeframe.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ item 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-btn">
+            <span class="faq-index">03</span>
+            <span class="faq-title">Do you offer custom software solutions?</span>
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div id="faq3" class="faq-answer" role="region" aria-labelledby="faq3-btn" hidden>
+            <p>
+              Yes, we create fully customized software solutions designed specifically for your business needs. 
+              From concept to deployment, our team ensures that every feature is aligned with your workflow and long-term goals. 
+              We focus on building software that is user-friendly, scalable, and secure, so your business can grow without limitations.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ item 4 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-btn">
+            <span class="faq-index">04</span>
+            <span class="faq-title">Why should I choose Qubit Cloud for my project?</span>
+            <span class="faq-chevron" aria-hidden="true">▼</span>
+          </button>
+          <div id="faq4" class="faq-answer" role="region" aria-labelledby="faq4-btn" hidden>
+            <p>
+              At Qubit Cloud, we combine creativity, technical expertise, and proven strategies to deliver solutions that truly make a difference. 
+              Our team is passionate about helping businesses succeed in the digital world. With a strong focus on innovation and client satisfaction, 
+              we ensure every project adds real value and drives meaningful growth for your brand.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ================= Review Section (Dark-Blue Aesthetic) ================= -->
+<style>
+  /* Component-level theme tokens (dark-blue aesthetic) */
+  :root {
+    --qc-bg: #071028;
+    --qc-surface: linear-gradient(180deg, rgba(12,30,56,0.6), rgba(6,14,32,0.6));
+    --qc-card: #0b2034;
+    --qc-card-2: #0f2940;
+    --qc-text: #ffffff;
+    --qc-muted: rgba(255,255,255,0.78);
+    --qc-accent: #4ea1ff;
+    --qc-accent-2: #6ce1ff;
+    --qc-success: #1fb87f;
+    --qc-danger: #ff6b6b;
+    --qc-radius: 12px;
+    --qc-shadow: 0 14px 40px rgba(2,6,23,0.55);
+    --qc-soft-shadow: 0 6px 20px rgba(2,6,23,0.45);
+    --qc-glass: rgba(255,255,255,0.02);
+  }
+
+  /* Outer section */
+  .review-section {
+    padding: 80px 20px;
+    background: radial-gradient(900px 300px at 10% 10%, rgba(78,161,255,0.04), transparent),
+                var(--qc-bg);
+    color: var(--qc-text);
+  }
+  .review-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .review-heading {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    color: var(--qc-text);
+    line-height: 1.02;
+  }
+  .review-sub {
+    color: var(--qc-muted);
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+  }
+
+  /* Form card */
+  .review-form {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding: 28px;
+    border-radius: var(--qc-radius);
+    box-shadow: var(--qc-soft-shadow);
+    text-align: left;
+    border: 1px solid rgba(78,161,255,0.04);
+  }
+  .review-form label { display:block; font-weight:600; margin-bottom:6px; color:var(--qc-text); }
+  .review-form input[type="text"],
+  .review-form input[type="email"],
+  .review-form textarea {
+    width:100%;
+    padding:10px 14px;
+    margin-bottom:16px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.02);
+    color: var(--qc-text);
+    font-size: 1rem;
+  }
+  .review-form textarea { min-height:96px; resize: vertical; }
+
+  /* Star rating */
+  .star-rating { display:flex; gap:8px; font-size:1.8rem; color: #ccc; cursor: pointer; user-select: none; }
+  .star-rating span { transition: color 160ms ease, transform 160ms ease; }
+  .star-rating span:hover { transform: translateY(-3px); }
+
+  /* Submit button */
+  .submit-btn {
+    background: linear-gradient(90deg, var(--qc-accent), var(--qc-accent-2));
+    color: #021533;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(78,161,255,0.12);
+    transition: transform 180ms ease, box-shadow 180ms ease, opacity 160ms ease;
+  }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* Pulse animation (respects reduced-motion via media query) */
+  @keyframes qc-pulse {
+    0% { transform: translateY(0); box-shadow: 0 10px 30px rgba(78,161,255,0.12); }
+    50% { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(78,161,255,0.16); }
+    100% { transform: translateY(0); box-shadow: 0 10px 30px rgba(78,161,255,0.12); }
+  }
+  .submit-btn.pulse { animation: qc-pulse 2800ms ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .submit-btn.pulse { animation: none; }
+  }
+
+  /* Reviews list */
+  #reviews-list {
+    margin-top:50px;
+    text-align:left;
+  }
+  #reviews-list h3 { font-size:1.6rem; margin-bottom:20px; color:var(--qc-text); }
+  .review-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:18px;
+    margin-bottom:14px;
+    border-radius:10px;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.36);
+    border: 1px solid rgba(78,161,255,0.03);
+    color: var(--qc-text);
+  }
+  .review-card .meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:12px; }
+  .review-card strong { display:block; color:var(--qc-text); }
+  .review-card small { display:block; color:var(--qc-muted); margin-top:4px; font-size:0.92rem; }
+
+  .rating-stars { color: #FFD700; font-size:1.05rem; }
+
+  /* Empty state */
+  .no-reviews { color:var(--qc-muted); padding:12px 0; }
+
+  /* Micro-interactions */
+  .review-card:hover { transform: translateY(-4px); transition: transform 180ms ease; }
+  .review-form :focus { outline: none; box-shadow: 0 8px 28px rgba(78,161,255,0.08); border-color: var(--qc-accent); }
+
+  /* Toasts (small) */
+  #qc-toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    background: rgba(6,18,36,0.92);
+    color: var(--qc-text);
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: var(--qc-shadow);
+    border: 1px solid rgba(78,161,255,0.06);
+    z-index: 10050;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+  #qc-toast.show { opacity: 1; transform: translateY(0); }
+</style>
+
+<section class="review-section" id="reviews" aria-labelledby="review-heading">
+  <div class="review-wrap">
+    <h2 id="review-heading" class="review-heading">Client Reviews</h2>
+    <p class="review-sub">Share your experience with <strong>Qubit Cloud</strong> — we value your feedback!</p>
+
+    <!-- Review Form -->
+    <form id="review-form" class="review-form" novalidate>
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+      <label for="message">Your Review</label>
+      <textarea id="message" name="message" rows="4" required placeholder="Write your review..."></textarea>
+
+      <!-- Star Rating -->
+      <div style="margin-bottom:16px;">
+        <span style="display:block;font-weight:600;margin-bottom:8px;color:var(--qc-text);">Your Rating:</span>
+        <div class="star-rating" role="radiogroup" aria-label="Rating">
+          <span role="radio" aria-checked="false" tabindex="0" data-value="1" aria-label="1 star">★</span>
+          <span role="radio" aria-checked="false" tabindex="0" data-value="2" aria-label="2 stars">★</span>
+          <span role="radio" aria-checked="false" tabindex="0" data-value="3" aria-label="3 stars">★</span>
+          <span role="radio" aria-checked="false" tabindex="0" data-value="4" aria-label="4 stars">★</span>
+          <span role="radio" aria-checked="false" tabindex="0" data-value="5" aria-label="5 stars">★</span>
+        </div>
+      </div>
+
+      <button type="submit" id="submit-review" class="submit-btn pulse">Submit Review</button>
+    </form>
+
+    <!-- Review Display Area -->
+    <div id="reviews-list" aria-live="polite" aria-atomic="true">
+      <h3>Recent Reviews</h3>
+      <div class="no-reviews">Loading reviews…</div>
+    </div>
+  </div>
+</section>
+
+<!-- Small toast element (reused by JS) -->
+<div id="qc-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+/* Review section JS: rating, safe rendering, AJAX submit, toasts, reduced-motion aware */
+
+(function () {
+  'use strict';
+
+  // Helpers
+  const qs = (sel, root = document) => root.querySelector(sel);
+  const qsa = (sel, root = document) => Array.from((root || document).querySelectorAll(sel));
+  const form = qs('#review-form');
+  const stars = qsa('.star-rating span');
+  const reviewsList = qs('#reviews-list');
+  const toastEl = qs('#qc-toast');
+  const submitBtn = qs('#submit-review');
+
+  let selectedRating = 0;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Utility: show toast
+  function showToast(message, timeout = 3000) {
+    if (!toastEl) return;
+    toastEl.textContent = message;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(() => toastEl.classList.remove('show'), timeout);
+  }
+
+  // Accessible star handling
+  function updateStarDisplay() {
+    stars.forEach(s => {
+      const val = Number(s.dataset.value);
+      if (selectedRating && val <= selectedRating) {
+        s.style.color = '#FFD700';
+        s.setAttribute('aria-checked', 'true');
+      } else {
+        s.style.color = '#ccc';
+        s.setAttribute('aria-checked', 'false');
+      }
+    });
+  }
+
+  stars.forEach(s => {
+    // mouse/click
+    s.addEventListener('click', () => {
+      selectedRating = Number(s.dataset.value);
+      updateStarDisplay();
+    });
+    // keyboard
+    s.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectedRating = Number(s.dataset.value);
+        updateStarDisplay();
+        s.focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedRating = Math.max(1, selectedRating - 1 || 1);
+        updateStarDisplay();
+        const el = qs('.star-rating span[data-value="' + selectedRating + '"]');
+        if (el) el.focus();
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedRating = Math.min(5, (selectedRating || 0) + 1);
+        updateStarDisplay();
+        const el = qs('.star-rating span[data-value="' + selectedRating + '"]');
+        if (el) el.focus();
+      }
+    });
+    // hover visual only if motion allowed
+    if (!reducedMotion) {
+      s.addEventListener('mouseenter', () => { s.style.transform = 'translateY(-3px)'; });
+      s.addEventListener('mouseleave', () => { s.style.transform = ''; });
+    }
+  });
+
+  // Safe DOM builder for reviews (avoids innerHTML injection)
+  function renderReviews(reviews = []) {
+    // header
+    reviewsList.innerHTML = '';
+    const header = document.createElement('h3');
+    header.textContent = 'Recent Reviews';
+    reviewsList.appendChild(header);
+
+    if (!Array.isArray(reviews) || reviews.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'no-reviews';
+      empty.textContent = 'No reviews yet.';
+      reviewsList.appendChild(empty);
+      return;
+    }
+
+    reviews.forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'review-card';
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+
+      const left = document.createElement('div');
+      const name = document.createElement('strong');
+      name.textContent = r.name || 'Anonymous';
+      left.appendChild(name);
+
+      if (r.email) {
+        const email = document.createElement('small');
+        email.textContent = r.email;
+        left.appendChild(email);
+      }
+
+      const right = document.createElement('div');
+      right.className = 'rating-stars';
+      const rating = Math.max(0, Math.min(5, Number(r.rating) || 0));
+      right.textContent = '★'.repeat(rating);
+
+      meta.appendChild(left);
+      meta.appendChild(right);
+
+      const msg = document.createElement('p');
+      msg.style.margin = '0';
+      msg.style.color = 'var(--qc-muted)';
+      msg.textContent = r.message || '';
+
+      card.appendChild(meta);
+      card.appendChild(msg);
+      reviewsList.appendChild(card);
+    });
+  }
+
+  // Load reviews (GET)
+  async function loadReviews() {
+    try {
+      const res = await fetch('get_reviews.php', { credentials: 'same-origin' });
+      if (!res.ok) throw new Error('Failed to load reviews');
+      const data = await res.json();
+      renderReviews(data);
+    } catch (err) {
+      renderReviews([]);
+      console.error(err);
+      showToast('Unable to load reviews.', 2500);
+    }
+  }
+
+  // Submit review (POST)
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message || selectedRating === 0) {
+      showToast('Please fill out all fields and select a rating.', 3000);
+      return;
+    }
+
+    // Disable button to prevent double submits
+    submitBtn.disabled = true;
+    submitBtn.classList.remove('pulse');
+
+    const body = new URLSearchParams({
+      name, email, message, rating: String(selectedRating)
+    });
+
+    try {
+      const res = await fetch('submit_review.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+        credentials: 'same-origin'
+      });
+      const json = await res.json();
+      if (json && json.success) {
+        showToast('Review submitted — thank you!', 3000);
+        form.reset();
+        selectedRating = 0;
+        updateStarDisplay();
+        // reload reviews
+        await loadReviews();
+      } else {
+        showToast(json.message || 'Error submitting review.', 3500);
+      }
+    } catch (err) {
+      console.error(err);
+      showToast('Error submitting review.', 3500);
+    } finally {
+      submitBtn.disabled = false;
+      if (!reducedMotion) submitBtn.classList.add('pulse');
+    }
+  });
+
+  // Initialize theme micro-interactions for this component
+  function initLocalTheme() {
+    // Pulse already added via class; ensure it's not run when reduced-motion is active
+    if (reducedMotion) {
+      submitBtn.classList.remove('pulse');
+    }
+
+    // subtle elevation on hover for cards (applies to dynamically created cards via delegation)
+    reviewsList.addEventListener('mouseover', (e) => {
+      const card = e.target.closest('.review-card');
+      if (card && !reducedMotion) card.style.transform = 'translateY(-4px)';
+    });
+    reviewsList.addEventListener('mouseout', (e) => {
+      const card = e.target.closest('.review-card');
+      if (card) card.style.transform = '';
+    });
+
+    // set meta theme color (mobile browsers)
+    const meta = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
+    meta.name = 'theme-color';
+    if (!meta.parentNode) document.head.appendChild(meta);
+    meta.content = getComputedStyle(document.documentElement).getPropertyValue('--qc-bg') || '#071028';
+  }
+
+  // Boot
+  document.addEventListener('DOMContentLoaded', () => {
+    initLocalTheme();
+    loadReviews();
+    updateStarDisplay();
+  });
+
+})();
+</script>
+
+
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="index.html" class="logo">
+                <img src="images/Meta.png" alt="Qubit Cloud Logo" height="40">
+                <span>Qubit Cloud</span>
+                <br>
+                </a>
+                <p>
+                    Address: Kuril 
+                    <br>
+                    Email : <a href="mailto:qubitcld@gmail.com">qubitcld@gmail.com</a><br>
+                    <br>
+                    Phone : <a href="tel:+8801577349947">+8801577349947</a>
+                </p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="career.html">Career</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="academy.html">Academy</a></li>
+                        <!-- <li><a href="privacy.html">Privacy Policy</a></li> -->
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="career.html">Career</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Collaboration Models</h4>
+                    <ul>
+                        <li>Team Augmentation</li>
+                        <li>Offshore Development</li>
+                        <li>MVP Service</li>
+                        <li>End to End Development</li>
+                    </ul>
+                </div>
+                <!--
+                <div>
+                    <h4>For Hiring</h4>
+                    <ul>
+                        <li>Hire Developers</li>
+                        <li>JavaScript Developers</li>
+                        <li>Python Developers</li>
+                        <li>Java Developers</li>
+                        <li>Golang Developers</li>
+                        <li>.NET Developers</li>
+                        <li>React Developers</li>
+                        <li>DevOps Engineers</li>
+                    </ul>
+                </div>
+                -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Qubit Cloud. All rights reserved.
+        </div>
+    </footer>
+  
+    
+    <script src="script.js"></script>
+    
+    <script src="sidebar.js"></script>
+    <script src="scroll.js"></script>
+   
+    
+</body>
+</html>
