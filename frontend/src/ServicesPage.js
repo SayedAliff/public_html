@@ -1,19 +1,18 @@
-/*
-ServicesPage.js (React component)
 
-- Migrated from services.html (body content only, no <html>, <head>, <body> tags)
-- All image references use process.env.PUBLIC_URL for React compatibility
-- CSS files imported at the top for global styles
-- JS files (script.js, sidebar.js, scroll.js) are dynamically loaded in useEffect for compatibility
-- The MVP Cost Calculator's script is inlined in useEffect as well
-- All class attributes changed to className, and self-closing tags fixed for JSX
-- To use: import ServicesPage from './ServicesPage'; and render <ServicesPage /> in App.js or your router
-*/
+// ServicesPage.js (React component)
+// Migrated from services.html
+// All image references use process.env.PUBLIC_URL for React compatibility
+// CSS files imported at the top for global styles
+// JS files (script.js, sidebar.js, scroll.js) are dynamically loaded in useEffect for compatibility
+// The MVP Cost Calculator's script is inlined in useEffect as well
+// All class attributes changed to className, and self-closing tags fixed for JSX
+// To use: import ServicesPage from './ServicesPage'; and render <ServicesPage /> in App.js or your router
 
 import React, { useEffect } from "react";
-import "../public/style.css";
-import "../public/sidebar.css";
-import "../public/scroll.css";
+import { Link } from "react-router-dom";
+import "./css/style.css";
+import "./css/sidebar.css";
+import "./css/scroll.css";
 
 const ServicesPage = () => {
   useEffect(() => {
@@ -34,61 +33,59 @@ const ServicesPage = () => {
     document.body.appendChild(script3);
 
     // Inline MVP calculator logic
-    const mvpScript = document.createElement("script");
-    mvpScript.innerHTML = `
-      document.getElementById('mvpForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(e.target));
-        let baseCost = 1000;
-        let baseDays = 10;
-        switch(data.projectType) {
-          case 'mobile': baseCost += 500; baseDays += 5; break;
-          case 'api': baseCost += 300; baseDays += 3; break;
-          case 'other': baseCost += 200; baseDays += 2; break;
-        }
-        baseCost += Number(data.features) * 400;
-        baseDays += Number(data.features) * 2;
-        if(data.designComplexity === 'standard') { baseCost += 500; baseDays += 5; }
-        if(data.designComplexity === 'premium') { baseCost += 1000; baseDays += 10; }
-        if(data.integration === 'standard') { baseCost += 700; baseDays += 7; }
-        if(data.integration === 'complex') { baseCost += 1500; baseDays += 14; }
-        baseCost *= Number(data.teamSize) / 2;
-        baseDays /= Number(data.teamSize) / 2;
-        document.getElementById('mvpResult').innerHTML =
-          `<h3>Estimated MVP Cost: $${baseCost.toLocaleString()}</h3>` +
-          `<p>Estimated Timeline: ${Math.ceil(baseDays)} working days</p>` +
-          `<p><small>This is a rough estimate. Contact us for a precise quote!</small></p>`;
-      });
-    `;
-    document.body.appendChild(mvpScript);
+    const mvpHandler = (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      let baseCost = 1000;
+      let baseDays = 10;
+      switch(data.projectType) {
+        case 'mobile': baseCost += 500; baseDays += 5; break;
+        case 'api': baseCost += 300; baseDays += 3; break;
+        case 'other': baseCost += 200; baseDays += 2; break;
+      }
+      baseCost += Number(data.features) * 400;
+      baseDays += Number(data.features) * 2;
+      if(data.designComplexity === 'standard') { baseCost += 500; baseDays += 5; }
+      if(data.designComplexity === 'premium') { baseCost += 1000; baseDays += 10; }
+      if(data.integration === 'standard') { baseCost += 700; baseDays += 7; }
+      if(data.integration === 'complex') { baseCost += 1500; baseDays += 14; }
+      baseCost *= Number(data.teamSize) / 2;
+      baseDays /= Number(data.teamSize) / 2;
+      document.getElementById('mvpResult').innerHTML =
+        `<h3>Estimated MVP Cost: $${baseCost.toLocaleString()}</h3>` +
+        `<p>Estimated Timeline: ${Math.ceil(baseDays)} working days</p>` +
+        `<p><small>This is a rough estimate. Contact us for a precise quote!</small></p>`;
+    };
+    const form = document.getElementById('mvpForm');
+    if (form) form.addEventListener('submit', mvpHandler);
 
     return () => {
       document.body.removeChild(script1);
       document.body.removeChild(script2);
       document.body.removeChild(script3);
-      document.body.removeChild(mvpScript);
+      if (form) form.removeEventListener('submit', mvpHandler);
     };
   }, []);
 
   return (
     <>
-      <div className="neon-bg" aria-hidden="true"></div>
       <header>
         <nav className="navbar">
-          <a href="index.html" className="logo">
+          <Link to="/" className="logo">
             <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="50" />
-          </a>
+            <span>Qubit Cloud</span>
+          </Link>
           <ul className="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html" className="active">Services</a></li>
-            <li><a href="academy.html">Academy</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="career.html">Career</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="employee_login.php">Employee Portal</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/services" className="active">Services</Link></li>
+            <li><Link to="/academy">Academy</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/career">Career</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><a href="/employee_login.php">Employee Portal</a></li>
           </ul>
-          <a href="contact.html" className="cta">Schedule a Call</a>
+          <Link to="/contact" className="cta">Schedule a Call</Link>
           <button className="sidebar-toggle" id="sidebarToggle" aria-label="Open Menu" aria-controls="mobileSidebar" aria-expanded="false">
             <span className="bar"></span>
             <span className="bar"></span>
@@ -96,20 +93,6 @@ const ServicesPage = () => {
           </button>
         </nav>
         <div className="sidebar-overlay" id="sidebarOverlay"></div>
-        <aside className="mobile-sidebar" id="mobileSidebar" aria-hidden="true">
-          <nav>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="academy.html">Academy</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="career.html">Career</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="employee_login.php">Employee Portal</a></li>
-            </ul>
-          </nav>
-        </aside>
       </header>
       <main>
         <section className="services-section">
@@ -124,7 +107,7 @@ const ServicesPage = () => {
               </ul>
               <div className="cta-box">
                 <p>Want to accelerate your software company?</p>
-                <a href="contact.html" className="button primary">Hire The Best Team &rarr;</a>
+                <Link to="/contact" className="button primary">Hire The Best Team &rarr;</Link>
               </div>
             </div>
             <div className="services-right">
@@ -210,7 +193,6 @@ const ServicesPage = () => {
         <div className="footer-container">
           <div className="footer-left">
             <div className="logo">
-              <a href="index.html"></a>
               <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="50" />
               <span>Qubit Cloud</span>
             </div>
@@ -225,12 +207,11 @@ const ServicesPage = () => {
             <div>
               <h4>Company</h4>
               <ul>
-                <li><a href="about.html">About us</a></li>
-                <li><a href="career.html">Career</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="academy.html">Academy</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="career.html">Career</a></li>
+                <li><Link to="/about">About us</Link></li>
+                <li><Link to="/career">Career</Link></li>
+                <li><Link to="/blog">Blog</Link></li>
+                <li><Link to="/academy">Academy</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
             <div>
@@ -250,6 +231,6 @@ const ServicesPage = () => {
       </footer>
     </>
   );
-};
+}
 
 export default ServicesPage;

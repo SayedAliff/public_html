@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/style.css";
 import "./css/sidebar.css";
 import "./css/scroll.css";
 
-// Import JS for sidebar/scroll if you refactor them to modules, otherwise see notes below
-// import "../public/script.js";
-// import "../public/sidebar.js";
-// import "../public/scroll.js";
+const ContactPage = () => {
+  const formRef = useRef();
+  const [msg, setMsg] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-const HomePage = () => {
   useEffect(() => {
-    // If you want to keep using the original JS, you can dynamically load them here
-    // (Not best practice, but works for migration phase)
+    // Load legacy JS for sidebar, scroll, etc. (migration phase)
     const script1 = document.createElement("script");
     script1.src = process.env.PUBLIC_URL + "/script.js";
     script1.async = true;
@@ -35,21 +33,51 @@ const HomePage = () => {
     };
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setMsg("");
+    const form = formRef.current;
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim(),
+    };
+    try {
+      const res = await fetch("/submit_contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setMsg(result.message || "Thank you for reaching out! We'll get back to you soon.");
+        form.reset();
+      } else {
+        setMsg(result.message || "Error submitting contact. Please try again.");
+      }
+    } catch {
+      setMsg("Error submitting contact. Please try again.");
+    }
+    setSubmitting(false);
+  };
+
   return (
     <>
-      {/* Neon background */}
       <div className="neon-bg" aria-hidden="true"></div>
       <header>
         <nav className="navbar">
           <Link to="/" className="logo">
-            <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="40" />
+            <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="50" />
           </Link>
           <ul className="nav-links">
-            <li><Link to="/" className="active">Home</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/services">Services</Link></li>
             <li><Link to="/academy">Academy</Link></li>
             <li><Link to="/blog">Blog</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/contact" className="active">Contact</Link></li>
             <li><Link to="/career">Career</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><a href="/employee_login.php">Employee Portal</a></li>
@@ -65,11 +93,11 @@ const HomePage = () => {
         <aside className="mobile-sidebar" id="mobileSidebar" aria-hidden="true">
           <nav>
             <ul>
-              <li><Link to="/" className="active">Home</Link></li>
+              <li><Link to="/">Home</Link></li>
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/academy">Academy</Link></li>
               <li><Link to="/blog">Blog</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/contact" className="active">Contact</Link></li>
               <li><Link to="/career">Career</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><a href="/employee_login.php">Employee Portal</a></li>
@@ -77,16 +105,62 @@ const HomePage = () => {
           </nav>
         </aside>
       </header>
-      {/* ...existing code for main content, hero, services, reviews, etc. (convert all body content to JSX as above) ... */}
-      {/* Footer */}
+      <main>
+        <section className="contact-section">
+          <h1>Contact Qubit Cloud</h1>
+          <p>Let's connect! Reach out for project inquiries, hiring, partnership, or any questions.</p>
+          <div className="contact-details">
+            <div>
+              <h3>Address</h3>
+              <p>Kuril</p>
+            </div>
+            <div>
+              <h3>Email</h3>
+              <p><a href="mailto:qubitcld@gmail.com">qubitcld@gmail.com</a></p>
+            </div>
+            <br />
+            <div>
+              <h3>Phone</h3>
+              <p><a href="tel:+8801577349947">+8801577349947</a></p>
+            </div>
+          </div>
+          <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
+            <label>
+              Name:
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              Email:
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Phone Number:
+              <input type="tel" name="phone" required />
+            </label>
+            <label>
+              Subject:
+              <input type="text" name="subject" required />
+            </label>
+            <label>
+              Message:
+              <textarea name="message" rows={5} required />
+            </label>
+            <button type="submit" className="button primary" disabled={submitting}>
+              {submitting ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+          <div id="contactMsg" className="contact-msg">{msg}</div>
+        </section>
+      </main>
       <footer>
         <div className="footer-container">
           <div className="footer-left">
-            <Link to="/" className="logo">
-              <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="40" />
-              <span>Qubit Cloud</span>
-              <br />
-            </Link>
+            <div className="logo">
+              <Link to="/">
+                <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="50" />
+                <span>Qubit Cloud</span>
+              </Link>
+            </div>
             <p>
               Address: Kuril <br />
               Email : <a href="mailto:qubitcld@gmail.com">qubitcld@gmail.com</a><br />
@@ -125,4 +199,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ContactPage;

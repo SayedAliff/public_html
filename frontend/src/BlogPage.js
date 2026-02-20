@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import "../public/style.css";
-import "../public/sidebar.css";
-import "../public/scroll.css";
+import { Link } from "react-router-dom";
+import "./css/style.css";
+import "./css/sidebar.css";
+import "./css/scroll.css";
 
 const BlogPage = () => {
   useEffect(() => {
@@ -51,7 +52,44 @@ const BlogPage = () => {
   return (
     <>
       <div className="neon-bg" aria-hidden="true"></div>
-      {/* Header/Navbar should be a shared component */}
+      <header>
+        <nav className="navbar">
+          <Link to="/" className="logo">
+            <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="50" />
+          </Link>
+          <ul className="nav-links">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/academy">Academy</Link></li>
+            <li><Link to="/blog" className="active">Blog</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/career">Career</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><a href="/employee_login.php">Employee Portal</a></li>
+          </ul>
+          <Link to="/contact" className="cta">Schedule a Call</Link>
+          <button className="sidebar-toggle" id="sidebarToggle" aria-label="Open Menu" aria-controls="mobileSidebar" aria-expanded="false">
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
+        </nav>
+        <div className="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside className="mobile-sidebar" id="mobileSidebar" aria-hidden="true">
+          <nav>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/academy">Academy</Link></li>
+              <li><Link to="/blog" className="active">Blog</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/career">Career</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><a href="/employee_login.php">Employee Portal</a></li>
+            </ul>
+          </nav>
+        </aside>
+      </header>
       <main>
         <section className="blog-section">
           <h1>Qubit Cloud Blog</h1>
@@ -149,7 +187,49 @@ const BlogPage = () => {
           </div>
         </section>
       </main>
-      {/* Footer should be a shared component */}
+      <footer>
+        <div className="footer-container">
+          <div className="footer-left">
+            <div className="logo">
+              <Link to="/">
+                <img src={process.env.PUBLIC_URL + "/images/Meta.png"} alt="Qubit Cloud Logo" height="50" />
+                <span>Qubit Cloud</span>
+              </Link>
+            </div>
+            <p>
+              Address: Kuril <br />
+              Email : <a href="mailto:qubitcld@gmail.com">qubitcld@gmail.com</a><br />
+              <br />
+              Phone : <a href="tel:+8801577349947">+8801577349947</a>
+            </p>
+          </div>
+          <div className="footer-links">
+            <div>
+              <h4>Company</h4>
+              <ul>
+                <li><Link to="/about">About us</Link></li>
+                <li><Link to="/career">Career</Link></li>
+                <li><Link to="/blog">Blog</Link></li>
+                <li><Link to="/academy">Academy</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/career">Career</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Collaboration Models</h4>
+              <ul>
+                <li>Team Augmentation</li>
+                <li>Offshore Development</li>
+                <li>MVP Service</li>
+                <li>End to End Development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          &copy; 2025 Qubit Cloud. All rights reserved.
+        </div>
+      </footer>
     </>
   );
 };
