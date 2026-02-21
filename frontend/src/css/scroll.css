@@ -1,3 +1,118 @@
-/* scroll.css moved from public */
+/* neon-scroll.css
+	 3D scroll-driven neon lighting background layers
+	 Non-invasive: pointer-events:none, aria-hidden
+	 Uses existing theme CSS variables where possible (fallbacks included)
+*/
 
-...existing code...
+:root {
+	/* fallback color tokens (will pick up your --accent variables if defined) */
+	--neon-1: var(--accent, #4ea1ff);
+	--neon-2: var(--accent-2, #6ce1ff);
+	--neon-3: #9b7cff;
+	--neon-4: #ff6bd6;
+	--neon-bg-opacity: 0.06;
+	--neon-blur: 36px;
+	--neon-radius: 40%;
+	--neon-perspective: 900px;
+}
+
+/* Container sitting behind everything */
+.neon-bg {
+	position: fixed;
+	inset: 0;
+	z-index: 0; /* keep behind site content (site uses higher z-index on header/footer) */
+	pointer-events: none;
+	transform-style: preserve-3d;
+	perspective: var(--neon-perspective);
+	will-change: transform;
+	display: block;
+	mix-blend-mode: screen; /* allow neon to blend with page background softly */
+}
+
+/* A lightweight stacking context so content remains above */
+body > .neon-bg { z-index: 2; } /* pages in repo use z-indexes, this keeps neon behind header with z-index 60... you may adjust */
+
+/* Each layer is full-screen and uses GPU transforms */
+.neon-layer {
+	position: absolute;
+	inset: 0;
+	will-change: transform, opacity, filter;
+	transition: opacity 420ms ease, transform 420ms cubic-bezier(.2,.9,.2,1);
+	transform-origin: 50% 50% calc(var(--layer-z, 0) * 1px);
+	/* subtle saturate to make neon vivid without overpowering content */
+	filter: saturate(120%) blur(var(--neon-blur));
+	opacity: 0.85;
+}
+
+/* Layer content is a radial gradient positioned by CSS vars (updated by JS) */
+.neon-layer::before {
+	content: "";
+	position: absolute;
+	width: 130%;
+	height: 130%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: var(--neon-radius);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	pointer-events: none;
+	mix-blend-mode: screen;
+	/* glow */
+	box-shadow: 0 10px 60px rgba(0,0,0,0.24), 0 0 120px rgba(0,0,0,0.12);
+}
+
+/* Specific layer color defaults; JS will set background-image inline for dynamic positions */
+.neon-layer--a::before {
+	background-image: radial-gradient(circle at var(--gx, 40%) var(--gy, 30%), rgba(78,161,255,0.30), transparent 18%, rgba(78,161,255,0.06) 48%, transparent 60%);
+}
+.neon-layer--b::before {
+	background-image: radial-gradient(circle at var(--gx, 70%) var(--gy, 70%), rgba(108,225,255,0.20), transparent 18%, rgba(108,225,255,0.04) 48%, transparent 60%);
+}
+.neon-layer--c::before {
+	background-image: radial-gradient(circle at var(--gx, 25%) var(--gy, 70%), rgba(155,124,255,0.16), transparent 18%, rgba(155,124,255,0.03) 48%, transparent 60%);
+}
+.neon-layer--d::before {
+	background-image: radial-gradient(circle at var(--gx, 85%) var(--gy, 30%), rgba(255,107,214,0.12), transparent 18%, rgba(255,107,214,0.02) 48%, transparent 60%);
+}
+
+/* subtle vertical banding to add perceived 3D depth (overlayer) */
+.neon-layer--band {
+	mix-blend-mode: overlay;
+	opacity: 0.06;
+}
+.neon-layer--band::before {
+	background-image: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+	filter: blur(30px);
+	opacity: 0.8;
+}
+
+/* small pulse animation for layers (paused on hover or when reduced-motion is set) */
+@keyframes neon-pulse {
+	0% { transform: scale3d(1,1,1); opacity: 0.92; }
+	50% { transform: scale3d(1.02,1.02,1); opacity: 1; }
+	100% { transform: scale3d(1,1,1); opacity: 0.92; }
+}
+.neon-layer.pulse { animation: neon-pulse 6000ms ease-in-out infinite; }
+
+/* Tune for mobile — less blur, less intensity */
+@media (max-width: 900px) {
+	:root { --neon-blur: 22px; }
+	.neon-layer::before { width: 170%; height: 170%; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.neon-layer, .neon-layer::before { transition: none !important; animation: none !important; filter: none !important; }
+	.neon-layer { opacity: 0.7 !important; transform: none !important; }
+}
+
+/* Ensure neon container is underneath header/hero content
+	 Some pages already use a sticky header with z-index > 60 — adjust if necessary */
+.neon-bg-behind {
+	z-index: 0 !important;
+}
+
+/* Utility: hide if JS not loaded (we will enable when JS runs) */
+.neon-bg.js-ready { opacity: 1; }
